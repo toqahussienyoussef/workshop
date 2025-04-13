@@ -1,0 +1,324 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "title": "Classic Burger",
+      "desc": "Juicy beef patty with lettuce, tomato, and special sauce.",
+      "price": 8.99,
+      "category": "Burgers",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 2,
+      "title": "Cheeseburger Deluxe",
+      "desc": "Beef patty with cheddar cheese, onions, and pickles.",
+      "price": 9.49,
+      "category": "Burgers",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 3,
+      "title": "BBQ Bacon Burger",
+      "desc": "Beef patty topped with bacon, BBQ sauce, and onion rings.",
+      "price": 10.99,
+      "category": "Burgers",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 4,
+      "title": "Mushroom Swiss Burger",
+      "desc": "Beef patty with sautéed mushrooms and Swiss cheese.",
+      "price": 10.49,
+      "category": "Burgers",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 5,
+      "title": "Grilled Chicken Sandwich",
+      "desc": "Grilled chicken breast with lettuce and mayo.",
+      "price": 8.49,
+      "category": "Sandwiches",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 6,
+      "title": "Crispy Chicken Sandwich",
+      "desc": "Fried chicken with spicy mayo and pickles.",
+      "price": 8.99,
+      "category": "Sandwiches",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 7,
+      "title": "BLT Sandwich",
+      "desc": "Bacon, lettuce, and tomato with mayo on toasted bread.",
+      "price": 7.49,
+      "category": "Sandwiches",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 8,
+      "title": "Club Sandwich",
+      "desc": "Turkey, bacon, lettuce, and tomato on triple bread.",
+      "price": 9.99,
+      "category": "Sandwiches",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 9,
+      "title": "Margherita Pizza",
+      "desc": "Tomato sauce, mozzarella, and fresh basil.",
+      "price": 12.99,
+      "category": "Pizzas",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 10,
+      "title": "Pepperoni Pizza",
+      "desc": "Classic pizza with pepperoni and mozzarella.",
+      "price": 13.99,
+      "category": "Pizzas",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 11,
+      "title": "Veggie Pizza",
+      "desc": "Bell peppers, onions, mushrooms, and olives.",
+      "price": 12.49,
+      "category": "Pizzas",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 12,
+      "title": "Meat Lovers Pizza",
+      "desc": "Pepperoni, sausage, bacon, and ham.",
+      "price": 15.99,
+      "category": "Pizzas",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 13,
+      "title": "Caesar Salad",
+      "desc": "Romaine lettuce, croutons, and Caesar dressing.",
+      "price": 6.99,
+      "category": "Salads",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 14,
+      "title": "Greek Salad",
+      "desc": "Cucumbers, tomatoes, feta, and olives.",
+      "price": 7.49,
+      "category": "Salads",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 15,
+      "title": "Cobb Salad",
+      "desc": "Chicken, bacon, eggs, avocado, and blue cheese.",
+      "price": 8.99,
+      "category": "Salads",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 16,
+      "title": "Garden Salad",
+      "desc": "Mixed greens, carrots, and cherry tomatoes.",
+      "price": 5.99,
+      "category": "Salads",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 17,
+      "title": "Spaghetti Bolognese",
+      "desc": "Spaghetti with rich meat sauce and parmesan.",
+      "price": 11.99,
+      "category": "Pasta",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 18,
+      "title": "Fettuccine Alfredo",
+      "desc": "Creamy Alfredo sauce with fettuccine pasta.",
+      "price": 10.99,
+      "category": "Pasta",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 19,
+      "title": "Penne Arrabbiata",
+      "desc": "Spicy tomato sauce with penne pasta.",
+      "price": 9.99,
+      "category": "Pasta",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 20,
+      "title": "Lasagna",
+      "desc": "Layers of pasta, meat sauce, and cheese.",
+      "price": 12.49,
+      "category": "Pasta",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 21,
+      "title": "Chicken Wings",
+      "desc": "Spicy buffalo wings with ranch dip.",
+      "price": 7.99,
+      "category": "Appetizers",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 22,
+      "title": "Mozzarella Sticks",
+      "desc": "Fried mozzarella with marinara sauce. Fried mozzarella with marinara sauce. Fried mozzarella with marinara sauce.Fried mozzarella with marinara sauce.Fried mozzarella with marinara sauce. Fried mozzarella with marinara sauce. Fried mozzarella with marinara sauce. Fried mozzarella with marinara sauce.Fried mozzarella with marinara sauce.Fried mozzarella with marinara sauce.",
+      "price": 6.49,
+      "category": "Appetizers",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 23,
+      "title": "Nachos Supreme",
+      "desc": "Tortilla chips with cheese, beef, and jalapeños.",
+      "price": 8.49,
+      "category": "Appetizers",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 24,
+      "title": "Garlic Bread",
+      "desc": "Toasted bread with garlic and herbs.",
+      "price": 4.99,
+      "category": "Appetizers",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 25,
+      "title": "Grilled Salmon",
+      "desc": "Fresh salmon with lemon herb sauce.",
+      "price": 15.99,
+      "category": "Main Dishes",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 26,
+      "title": "Steak Ribeye",
+      "desc": "Juicy ribeye steak with mashed potatoes.",
+      "price": 18.99,
+      "category": "Main Dishes",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 27,
+      "title": "Chicken Parmesan",
+      "desc": "Breaded chicken with marinara and mozzarella.",
+      "price": 13.49,
+      "category": "Main Dishes",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 28,
+      "title": "Vegetarian Stir-Fry",
+      "desc": "Mixed vegetables in soy sauce with rice.",
+      "price": 10.99,
+      "category": "Main Dishes",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 29,
+      "title": "Chocolate Lava Cake",
+      "desc": "Warm chocolate cake with molten center.",
+      "price": 5.99,
+      "category": "Desserts",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 30,
+      "title": "Cheesecake",
+      "desc": "Creamy cheesecake with strawberry topping.",
+      "price": 6.49,
+      "category": "Desserts",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 31,
+      "title": "Tiramisu",
+      "desc": "Coffee-flavored Italian dessert.",
+      "price": 6.99,
+      "category": "Desserts",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 32,
+      "title": "Apple Pie",
+      "desc": "Classic pie with cinnamon apples.",
+      "price": 5.49,
+      "category": "Desserts",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 33,
+      "title": "Cola",
+      "desc": "Refreshing carbonated soft drink.",
+      "price": 1.99,
+      "category": "Drinks",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 34,
+      "title": "Iced Tea",
+      "desc": "Chilled tea with a hint of lemon.",
+      "price": 2.49,
+      "category": "Drinks",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 35,
+      "title": "Orange Juice",
+      "desc": "Freshly squeezed orange juice.",
+      "price": 2.99,
+      "category": "Drinks",
+      "img": "src/assets/images/img-6.webp"
+    },
+    {
+      "id": 36,
+      "title": "Coffee",
+      "desc": "Hot brewed coffee with rich aroma.",
+      "price": 2.49,
+      "category": "Drinks",
+      "img": "src/assets/images/img-2.webp"
+    },
+    {
+      "id": 37,
+      "title": "Fish and Chips",
+      "desc": "Crispy fried fish with golden fries.",
+      "price": 11.49,
+      "category": "Main Dishes",
+      "img": "src/assets/images/img-3.webp"
+    },
+    {
+      "id": 38,
+      "title": "Shrimp Scampi",
+      "desc": "Shrimp in garlic butter sauce with pasta.",
+      "price": 14.99,
+      "category": "Main Dishes",
+      "img": "src/assets/images/img-4.webp"
+    },
+    {
+      "id": 39,
+      "title": "Onion Rings",
+      "desc": "Crispy fried onion rings with dipping sauce.",
+      "price": 5.49,
+      "category": "Appetizers",
+      "img": "src/assets/images/img-5.webp"
+    },
+    {
+      "id": 40,
+      "title": "Fruit Smoothie",
+      "desc": "Blended mixed fruits with yogurt.",
+      "price": 3.99,
+      "category": "Drinks",
+      "img": "src/assets/images/img-6.webp"
+    }
+  ]
+}

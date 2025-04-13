@@ -1,0 +1,448 @@
+// Import Global Font 
+
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic&display=swap');
+
+
+
+
+// Variables 
+
+$main-color : #647ae1;
+$main-shadow : rgba(66, 153, 225, 0.25);
+$light-main-text-color : #a0aec0;
+$bold-text : #333340;
+$main-text-color :#29303a;
+$focus-bg : #f6f7fc;
+$main-bg : #ffffff;
+$border-color : #eeeeee;
+$text-paragh : #ababb5;
+$sub-text : #abaeb6;
+$empty-bg-color: #f8f9fa;
+$empty-text-color: #6c757d;
+$empty-border-color: #dee2e6;
+$main-font : "Special Gothic",
+sans-serif;
+
+
+
+
+@mixin breakpoints($point) {
+
+
+    @if $point ==verySmall {
+        @media (max-width: 480px) {
+            @content;
+        }
+    }
+
+    @else if $point ==small {
+        @media (max-width: 991px) {
+            @content;
+        }
+    }
+
+    @else if $point ==medium {
+        @media (min-width: 992px) {
+            @content;
+        }
+    }
+
+
+}
+
+
+* {
+    font-family: $main-font;
+}
+
+
+// Main sizing 
+
+.container {
+    width: 90%;
+    margin: auto;
+    padding: 1rem 0;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+// Global Flex
+
+%FlexBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
+
+// top head sections
+
+.head-with-filter,
+.filter-section {
+    @extend %FlexBetween;
+}
+
+.head-with-filter {
+    @include breakpoints(small) {
+        flex-direction: column;
+    }
+}
+
+// Form 
+
+.form-class {
+    appearance: none;
+    background-color: $main-bg;
+    border: 1px solid $border-color;
+    border-radius: 0.375rem;
+    color: $text-paragh;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.625rem 1rem;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    &:focus {
+        outline: none;
+        border-color: $main-shadow;
+        box-shadow: 0 0 0 3px $main-shadow;
+    }
+
+    &:hover:not(:focus) {
+        border-color: $main-shadow;
+    }
+
+    &::placeholder {
+        color: $light-main-text-color;
+        opacity: 1;
+    }
+}
+
+.form-class.seach-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1em;
+    padding-right: 2.5rem;
+
+    &:focus {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234299E1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+        outline: none;
+        border-color: $main-shadow;
+    }
+}
+
+select.form-class {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1em;
+    padding-right: 2.5rem;
+
+    &::-ms-expand {
+        display: none;
+    }
+
+    &:focus {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234299E1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    }
+
+    option {
+        font-weight: normal;
+        padding: 0.5rem;
+    }
+}
+
+
+
+// Accordion style
+.accordion {
+    &__section {
+        width: 100%;
+        border-bottom: 2px solid $border-color;
+        overflow: hidden;
+        background-color: $main-bg;
+    }
+
+    &__header {
+        @extend %FlexBetween;
+        padding: 1rem 0.2rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: $focus-bg;
+        }
+    }
+
+    &__active {
+        border-bottom: 2px solid $border-color;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.25em;
+        font-weight: 600;
+        color: $bold-text;
+        flex-grow: 1;
+    }
+
+    &__badge {
+        background-color: #e2e8f0;
+        color: #334155;
+        border-radius: 9999px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-right: 0.75rem;
+    }
+
+    &__icon {
+        border: 1px solid $border-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $main-bg;
+
+        svg {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__content {
+        padding: 1rem 2rem;
+        background-color: white;
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    &__item {
+        height: 100%;
+    }
+
+    // Transition effects
+    &-enter-active,
+    &-leave-active {
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        max-height: 1000px;
+        overflow: hidden;
+    }
+
+    &-enter-from,
+    &-leave-to {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+// Card Container
+.card {
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    width: calc(33.333% - 1.33rem);
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 1rem;
+    box-sizing: border-box;
+    height: auto;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: $focus-bg;
+    }
+
+
+    &__image-container {
+        position: relative;
+        margin-bottom: 1rem;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 4px;
+    }
+
+    &__checkbox {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+
+
+    &__details {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+
+    &__title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: $main-text-color;
+    }
+
+
+    &__description {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+        color: $text-paragh;
+        line-height: 1.4;
+    }
+
+
+    &__price {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $main-color;
+        margin-bottom: 1rem;
+    }
+
+
+    &__quantity {
+        display: flex;
+        align-items: flex-start;
+        flex-flow: column;
+        gap: 1rem;
+
+        &-label {
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+            color: $main-text-color;
+        }
+
+        &-select {
+            padding: 0.4rem;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            background-color: white;
+
+            &:focus {
+                outline: none;
+                border-color: $main-color;
+            }
+        }
+    }
+}
+
+// Container for the cards
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -1rem;
+
+    @include breakpoints(small) {
+        .card {
+            width: calc(50% - 0.5rem);
+        }
+    }
+
+    @include breakpoints(verySmall) {
+        .card {
+            width: 100%;
+        }
+    }
+}
+
+
+
+// No Data section
+
+.no-data-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background-color: $empty-bg-color;
+    border: 1px dashed $empty-border-color;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    text-align: center;
+    color: $empty-text-color;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V9l-7-7z'/%3E%3Cpath d='M13 3v6h6'/%3E%3Cpath d='M10.95 12.5H8.5'/%3E%3Cpath d='M15.5 15.5h-7'/%3E%3Cpath d='M15.5 18.5h-7'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+
+    animation: fadeIn 0.5s ease-in-out;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    @include breakpoints(verySmall) {
+        padding: 2rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+
+
+
+.read-more-link {
+    color: $main-color;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: 4s;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

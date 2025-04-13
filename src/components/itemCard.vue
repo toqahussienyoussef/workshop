@@ -1,0 +1,103 @@
+<template>
+  <article class="product-card" itemscope itemtype="http://schema.org/Product">
+    <div class="card__image-container">
+      <input
+        type="checkbox"
+        v-model="checkedItem"
+        :id="`${item.id}`"
+        :name="`${item.title}`"
+        class="card__checkbox"
+        aria-label="Select product"
+      />
+      <img
+        :src="`${item.img}`"
+        :alt="`${item.title}`"
+        class="card__image"
+        itemprop="image"
+        loading="lazy"
+      />
+    </div>
+    <div class="card__details">
+      <div>
+        <h2 class="card__title" itemprop="name">{{ item.title }}</h2>
+        <p class="card__description" itemprop="description">
+          {{
+            item.desc.length > 120 && !expanded
+              ? item.desc.substring(0, 60) + "..."
+              : item.desc
+          }}
+          <a
+            v-if="item.desc.length > 60"
+            href="#"
+            @click.prevent="expanded = !expanded"
+            class="read-more-link"
+            :aria-expanded="expanded ? 'true' : 'false'"
+          >
+            {{ expanded ? "Read Less" : "Read More" }}
+          </a>
+        </p>
+        <span
+          class="card__price"
+          itemprop="offers"
+          itemscope
+          itemtype="http://schema.org/Offer"
+        >
+          <meta itemprop="priceCurrency" content="USD" />
+          <span itemprop="price">{{ item.price }}</span> $
+        </span>
+      </div>
+
+      <div class="card__quantity">
+        <label :for="`quantity${item.id}`" class="card__quantity-label"
+          >Quantity</label
+        >
+        <select
+          name="quantity"
+          :id="`quantity${item.id}`"
+          v-model="quantity"
+          class="form-class w-25"
+          aria-label="Select product quantity"
+        >
+          <option v-for="count in 100" :key="count" :value="count">
+            {{ count }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </article>
+</template>
+<script setup lang="ts">
+import { ref, watch } from "vue";
+
+const props = defineProps({
+  item: Object,
+});
+
+const checkedItem = ref<boolean>(false);
+const quantity = ref<number>(1);
+
+const emit = defineEmits(["update-selection"]);
+
+const updateSelection = () => {
+  emit("update-selection", {
+    itemId: props.item.id,
+    selected: checkedItem.value,
+    quantity: quantity.value,
+    price: props.item.price,
+    totalPrice: checkedItem.value ? props.item.price * quantity.value : 0,
+  });
+};
+watch(
+  [checkedItem, quantity],
+  () => {
+    updateSelection();
+  },
+  { immediate: false }
+);
+
+// Handle read more toggle
+
+const expanded = ref<boolean>(false);
+</script>
+
+<style scoped></style>
