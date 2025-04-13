@@ -60,6 +60,9 @@
           />
         </div>
       </div>
+      <div v-else class="no-data-section" role="status" aria-live="polite">
+        No Data
+      </div>
     </transition>
   </div>
 </template>

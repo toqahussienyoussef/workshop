@@ -25,7 +25,11 @@
         v-for="(category, index) in uniqueCategories"
         :key="category"
         :category="category"
-        :items="filteredItems"
+        :items="
+          selectedCategory && selectedCategory !== 'All'
+            ? filteredItems.filter((ele) => ele.category === selectedCategory)
+            : filteredItems
+        "
         :default-expanded="index === 0 && !isSearching"
         :selected-category="selectedCategory"
         :search-active="isSearching"
@@ -139,6 +143,12 @@ const { searchString, filteredItems, searchTerm } = useSearchFilter(menuItems);
 // Computed property to check if search is active
 const isSearching = computed(() => {
   return searchTerm.value.length > 0;
+});
+
+watch(searchString, () => {
+  filteredItems.value = filteredItems.value.filter(
+    (ele) => ele.category == selectedCategory
+  );
 });
 watch(selectedCategory, () => {
   searchString.value = "";
