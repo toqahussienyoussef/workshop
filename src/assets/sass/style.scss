@@ -490,4 +490,9 @@ select.form-class {
 
 .custom-container-class {
     width: auto !important;
+
+    @include breakpoints(small) {
+        width: 100% !important;
+    }
+
 }
