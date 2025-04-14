@@ -7,7 +7,7 @@
         :id="`${item.id}`"
         :name="`${item.title}`"
         class="card__checkbox"
-        aria-label="Select product"
+        :aria-label="`Select ${item.title}`"
       />
       <img
         :src="`${item.img}`"
@@ -19,11 +19,11 @@
     </div>
     <div class="card__details">
       <div>
-        <h2 class="card__title" itemprop="name">{{ item.title }}</h2>
+        <h3 class="card__title" itemprop="name">{{ item.title }}</h3>
         <p class="card__description" itemprop="description">
           {{
             item.desc.length > 120 && !expanded
-              ? item.desc.substring(0, 60) + "..."
+              ? item.desc.substring(0, 120) + "..."
               : item.desc
           }}
           <a
@@ -48,7 +48,7 @@
       </div>
 
       <div class="card__quantity">
-        <label :for="`quantity${item.id}`" class="card__quantity-label"
+        <label :for="`quantity${item.id}`" class="card__quantity-label sr-only"
           >Quantity</label
         >
         <select

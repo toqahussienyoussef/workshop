@@ -21,26 +21,19 @@
       role="tablist"
       aria-labelledby="menu-heading"
     >
+      <div v-if="isLoading" class="loading">Loading...</div>
       <AccordionSection
         v-for="(category, index) in uniqueCategories"
         :key="category"
         :category="category"
-        :items="
-          selectedCategory && selectedCategory !== 'All'
-            ? filteredItems.filter((ele) => ele.category === selectedCategory)
-            : filteredItems
-        "
+        :items="displayedItems"
         :default-expanded="index === 0 && !isSearching"
         :selected-category="selectedCategory"
         :search-active="isSearching"
         @update-selection="handleSelectionUpdate"
         v-if="filteredItems.length > 0"
       />
-      <NoData v-else text="No Data Founded" />
-
-      <!-- <div v-else class="no-data-section" role="status" aria-live="polite">
-        No Data
-      </div> -->
+      <NoData v-else text="No Data Found" />
     </div>
   </div>
 </template>
@@ -59,7 +52,13 @@ import { useHead } from "@vueuse/head";
 const pageTitle = ref("Menu Page");
 useHead({
   title: pageTitle.value,
-  meta: [{ name: "All  you need to know about food menu" }],
+  meta: [
+    {
+      name: "description",
+      content:
+        "Explore our delicious food menu with a variety of categories and search options.",
+    },
+  ],
 });
 
 // Handel Checked Items and The price calculation , Display toast.
@@ -101,13 +100,16 @@ watch(
       const msg = `Selected Items: ${
         items.length
       } | Total Price: $${total.toFixed(2)} | Total Quantity : ${quantity}`;
-      useToaster(msg);
+      useToaster("info", msg);
     }
   },
   { deep: true }
 );
 
 // Get Items Data
+interface MenuResponse {
+  menuItems: MenuItem[];
+}
 
 interface MenuItem {
   id: number | string;
@@ -120,19 +122,24 @@ interface MenuItem {
 
 const menuItems = ref<MenuItem[]>([]);
 const error = ref<string | null>(null);
+const isLoading = ref<boolean>(false);
 
 const uniqueCategories = ref<string[]>([]);
 
 async function getMenuItems() {
+  isLoading.value = true;
   try {
-    const response = await axios("/data.json");
+    const response = await axios.get<MenuResponse>("/data.json");
     if (!response.data) throw new Error("Failed to fetch menu data");
     menuItems.value = response.data.menuItems;
     let categories = menuItems.value.map((ele) => ele.category);
     uniqueCategories.value = Array.from(new Set(categories));
   } catch (err) {
     error.value = "Error loading menu: " + err.message;
+    useToaster("error", error.value);
     console.error(err);
+  } finally {
+    isLoading.value = false;
   }
 }
 
@@ -142,7 +149,6 @@ const selectedCategory = ref<string>("All");
 
 const { searchString, filteredItems, searchTerm } = useSearchFilter(menuItems);
 
-// Computed property to check if search is active
 const isSearching = computed(() => {
   return searchTerm.value.length > 0;
 });
@@ -151,5 +157,14 @@ watch(selectedCategory, () => {
   searchString.value = "";
 });
 
+// Make sure that the items shows that only has the selected category
+const displayedItems = computed(() => {
+  if (selectedCategory.value && selectedCategory.value !== "All") {
+    return filteredItems.value.filter(
+      (ele) => ele.category === selectedCategory.value
+    );
+  }
+  return filteredItems.value;
+});
 onMounted(getMenuItems);
 </script>

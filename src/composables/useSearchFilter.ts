@@ -1,7 +1,8 @@
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, type Ref } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 
 export function useSearchFilter<T extends Record<string, any>>(
-  items: any,
+  items: Ref<T[]>,
   searchProperty: keyof T = "title" as keyof T,
   debounceTime: number = 300
 ) {
@@ -14,24 +15,17 @@ export function useSearchFilter<T extends Record<string, any>>(
     }
 
     return items.value.filter((item: T) => {
-      const propertyValue = String(item[searchProperty] || "");
+      const propertyValue = item[searchProperty];
+      if (typeof propertyValue !== "string") {
+        return false;
+      }
       return propertyValue
         .toLowerCase()
         .includes(searchTerm.value.toLowerCase());
     });
   });
 
-  // Create debounce function
-
-  function debounce(fn: Function, wait: number) {
-    let timeout: ReturnType<typeof setTimeout> | undefined;
-    return function (...args: any[]) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => fn.apply(this, args), wait);
-    };
-  }
-
-  const debouncedSearch = debounce((value: string) => {
+  const debouncedSearch = useDebounceFn((value: string) => {
     searchTerm.value = value;
   }, debounceTime);
 

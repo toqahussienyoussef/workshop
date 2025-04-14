@@ -28,7 +28,6 @@
           stroke-linecap="round"
           stroke-linejoin="round"
           :class="{ rotate: isExpanded }"
-          aria-label="Toggle category visibility"
         >
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
@@ -39,6 +38,7 @@
       <div
         v-if="isExpanded"
         class="accordion__content cards-container"
+        role="region"
         :id="`content-${category.toLowerCase().replace(/\s+/g, '-')}`"
         :aria-labelledby="`heading-${category
           .toLowerCase()
@@ -49,9 +49,6 @@
           :key="item.id"
           class="accordion__item card"
           :class="{ 'card--focused': isFocused }"
-          @focus="isFocused = true"
-          @blur="isFocused = false"
-          :tabindex="item.id"
           v-if="categoryItems"
         >
           <ItemCard
@@ -60,14 +57,14 @@
           />
         </div>
       </div>
-      <NoData v-else-if="categoryItems.length == 0" text="No Items Founded" />
+      <NoData v-else-if="categoryItems.length == 0" text="No Items Found" />
     </transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
-import ItemCard from "./itemCard.vue";
+import ItemCard from "./ItemCard.vue";
 import NoData from "./NoData.vue";
 
 import { PropType } from "vue";
@@ -106,7 +103,9 @@ const props = defineProps({
 defineEmits(["update-selection"]);
 const isFocused = ref<boolean>(false);
 
-const isExpanded = ref(props.defaultExpanded);
+const isExpanded = ref(
+  props.defaultExpanded || props.selectedCategory === props.category
+);
 
 const categoryItems = computed(() => {
   return props.items.filter((item) => item.category === props.category);
@@ -128,27 +127,20 @@ watch(
 );
 
 watch(
-  [() => categoryItems.value.length, () => props.searchActive],
-  ([count, isSearchActive]) => {
-    if (isSearchActive && count === 0) {
+  [() => props.selectedCategory, () => props.searchActive],
+  ([newCategory, isSearchActive]) => {
+    if (isSearchActive && categoryItems.value.length === 0) {
       isExpanded.value = false;
-    } else if (count > 0 && isSearchActive) {
-      isExpanded.value = true;
+    } else {
+      isExpanded.value =
+        newCategory === props.category || newCategory === "All";
     }
-  },
-  { immediate: true }
+  }
 );
 
 function toggleExpand() {
   isExpanded.value = !isExpanded.value;
 }
-
-// Initialize the accordion state
-onMounted(() => {
-  if (props.defaultExpanded || props.selectedCategory === props.category) {
-    isExpanded.value = true;
-  }
-});
 </script>
 
 <style scoped></style>
