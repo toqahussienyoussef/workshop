@@ -99,9 +99,9 @@ watch(
   [selectedItems, totalCartPrice, quantities],
   ([items, total, quantity]) => {
     if (items.length > 0) {
-      const msg = `Selected Items: ${
-        items.length
-      } | Total Price: $${total.toFixed(2)} | Total Quantity : ${quantity}`;
+      const msg = `Items: ${items.length} | Total: $${total.toFixed(
+        2
+      )} | Total Quantity : ${quantity}`;
       useToaster("info", msg);
     }
   },
