@@ -2,9 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Special+Gothic&display=swap');
 
-
-
-
 // Variables 
 
 $main-color : #647ae1;
@@ -16,18 +13,15 @@ $focus-bg : #f6f7fc;
 $main-bg : #ffffff;
 $border-color : #eeeeee;
 $text-paragh : #ababb5;
-$sub-text : #abaeb6;
 $empty-bg-color: #f8f9fa;
 $empty-text-color: #6c757d;
 $empty-border-color: #dee2e6;
 $main-font : "Special Gothic",
 sans-serif;
 
-
-
+// Create Responsive base 
 
 @mixin breakpoints($point) {
-
 
     @if $point ==verySmall {
         @media (max-width: 480px) {
@@ -55,13 +49,16 @@ sans-serif;
     font-family: $main-font;
 }
 
-
 // Main sizing 
 
 .container {
-    width: 90%;
+    width: 80%;
     margin: auto;
     padding: 1rem 0;
+
+    @include breakpoints(small) {
+        width: 90%;
+    }
 }
 
 .w-100 {
@@ -72,12 +69,48 @@ sans-serif;
     width: 25%;
 }
 
-// Global Flex
+// Global 
 
 %FlexBetween {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+// Animation
+
+%animationFadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+%animationBlurIn {
+    animation: blurIn 0.6s ease-in-out;
+
+    @keyframes blurIn {
+        from {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(15px);
+        }
+
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+    }
 }
 
 .gap-1 {
@@ -177,9 +210,11 @@ select.form-class {
 
     &__header {
         @extend %FlexBetween;
+        @extend %animationBlurIn;
         padding: 1rem 0.2rem;
         cursor: pointer;
         transition: background-color 0.2s ease;
+
 
         &:hover {
             background-color: $focus-bg;
@@ -266,6 +301,7 @@ select.form-class {
     margin-right: 1rem;
     box-sizing: border-box;
     height: auto;
+    @extend %animationFadeIn;
 
     &:focus {
         outline: none;
@@ -369,7 +405,7 @@ select.form-class {
 
     @include breakpoints(small) {
         .card {
-            width: calc(50% - 0.5rem);
+            width: calc(47% - 0.5rem);
         }
     }
 
@@ -411,19 +447,7 @@ select.form-class {
     }
 
 
-    animation: fadeIn 0.5s ease-in-out;
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+    @extend %animationFadeIn;
 
 
     @include breakpoints(verySmall) {

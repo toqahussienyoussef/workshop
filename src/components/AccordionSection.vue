@@ -54,22 +54,21 @@
           :tabindex="item.id"
           v-if="categoryItems"
         >
-          <itemCard
+          <ItemCard
             :item="item"
             @update-selection="$emit('update-selection', $event)"
           />
         </div>
       </div>
-      <div v-else class="no-data-section" role="status" aria-live="polite">
-        No Data
-      </div>
+      <NoData v-else-if="categoryItems.length == 0" text="No Items Founded" />
     </transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
-import itemCard from "../components/itemCard.vue";
+import ItemCard from "./itemCard.vue";
+import NoData from "./NoData.vue";
 
 import { PropType } from "vue";
 

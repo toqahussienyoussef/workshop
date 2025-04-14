@@ -36,10 +36,11 @@
         @update-selection="handleSelectionUpdate"
         v-if="filteredItems.length > 0"
       />
+      <NoData v-else text="No Data Founded" />
 
-      <div v-else class="no-data-section" role="status" aria-live="polite">
+      <!-- <div v-else class="no-data-section" role="status" aria-live="polite">
         No Data
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -51,6 +52,7 @@ import Dropdown from "../components/Filters/Dropdown.vue";
 import TextInput from "../components/Filters/TextInput.vue";
 import AccordionSection from "../components/AccordionSection.vue";
 import { useSearchFilter } from "@/composables/useSearchFilter";
+import NoData from "../components/NoData.vue";
 
 import { useHead } from "@vueuse/head";
 
@@ -145,11 +147,6 @@ const isSearching = computed(() => {
   return searchTerm.value.length > 0;
 });
 
-watch(searchString, () => {
-  filteredItems.value = filteredItems.value.filter(
-    (ele) => ele.category == selectedCategory
-  );
-});
 watch(selectedCategory, () => {
   searchString.value = "";
 });

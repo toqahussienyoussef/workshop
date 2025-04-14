@@ -5,8 +5,8 @@ export function useSearchFilter<T extends Record<string, any>>(
   searchProperty: keyof T = "title" as keyof T,
   debounceTime: number = 300
 ) {
-  const searchString = ref("");
-  const searchTerm = ref("");
+  const searchString = ref<string>("");
+  const searchTerm = ref<string>("");
 
   const filteredItems = computed(() => {
     if (!searchTerm.value) {
@@ -43,9 +43,5 @@ export function useSearchFilter<T extends Record<string, any>>(
     searchString,
     searchTerm,
     filteredItems,
-    resetSearch: () => {
-      searchString.value = "";
-      searchTerm.value = "";
-    },
   };
 }
