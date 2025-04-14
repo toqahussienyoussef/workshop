@@ -70,13 +70,24 @@
 import { ref, watch } from "vue";
 
 const props = defineProps({
-  item: Object,
+  item: {
+    type: Object,
+    required: true,
+  },
+  selections: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
-const checkedItem = ref<boolean>(false);
-const quantity = ref<number>(1);
-
 const emit = defineEmits(["update-selection"]);
+
+// Initialize checkedItem and quantity based on selections
+
+const checkedItem = ref<boolean>(
+  !!props.selections[props.item.id]?.selected || false
+);
+const quantity = ref<number>(props.selections[props.item.id]?.quantity || 1);
 
 const updateSelection = () => {
   emit("update-selection", {
@@ -88,13 +99,21 @@ const updateSelection = () => {
   });
 };
 watch(
+  () => props.selections[props.item.id],
+  (newSelection) => {
+    checkedItem.value = newSelection?.selected || false;
+    quantity.value = newSelection?.quantity || 1;
+  },
+  { deep: true }
+);
+
+watch(
   [checkedItem, quantity],
   () => {
     updateSelection();
   },
   { immediate: false }
 );
-
 // Handle read more toggle
 
 const expanded = ref<boolean>(false);

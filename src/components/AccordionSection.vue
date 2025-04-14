@@ -33,7 +33,6 @@
         </svg>
       </div>
     </div>
-
     <transition name="accordion">
       <div
         v-if="isExpanded"
@@ -53,6 +52,7 @@
         >
           <ItemCard
             :item="item"
+            :selections="selections"
             @update-selection="$emit('update-selection', $event)"
           />
         </div>
@@ -97,6 +97,10 @@ const props = defineProps({
   searchActive: {
     type: Boolean,
     default: false,
+  },
+  selections: {
+    type: Object,
+    default: () => ({}),
   },
 });
 

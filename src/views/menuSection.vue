@@ -30,6 +30,7 @@
         :default-expanded="index === 0 && !isSearching"
         :selected-category="selectedCategory"
         :search-active="isSearching"
+        :selections="selections"
         @update-selection="handleSelectionUpdate"
         v-if="filteredItems.length > 0"
       />
