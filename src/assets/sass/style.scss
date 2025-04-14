@@ -47,6 +47,22 @@ sans-serif;
 
 * {
     font-family: $main-font;
+
+    transition: 0.4s;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $main-shadow;
+    }
+
+
 }
 
 // Main sizing 
@@ -76,6 +92,9 @@ sans-serif;
     justify-content: space-between;
     align-items: center;
 }
+
+
+
 
 // Animation
 
@@ -195,6 +214,8 @@ select.form-class {
         font-weight: normal;
         padding: 0.5rem;
     }
+
+
 }
 
 
@@ -342,6 +363,7 @@ select.form-class {
     width: calc(33.333% - 1.33rem);
     display: inline-block;
     vertical-align: bottom;
+    margin-right: 1rem;
     box-sizing: border-box;
     height: auto;
     @extend %animationFadeIn;
@@ -444,7 +466,7 @@ select.form-class {
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
 
     margin: 0 -1rem;
 
