@@ -1,54 +1,8 @@
-// Import Global Font 
-
-@import url('https://fonts.googleapis.com/css2?family=Special+Gothic&display=swap');
-
-// Variables 
-
-$main-color : #647ae1;
-$main-shadow : rgba(66, 153, 225, 0.25);
-$light-main-text-color : #a0aec0;
-$bold-text : #333340;
-$main-text-color :#29303a;
-$focus-bg : #f6f7fc;
-$main-bg : #ffffff;
-$border-color : #eeeeee;
-$text-paragh : #ababb5;
-$empty-bg-color: #f8f9fa;
-$empty-text-color: #6c757d;
-$empty-border-color: #dee2e6;
-$main-font : "Special Gothic",
-sans-serif;
-
-// Create Responsive base 
-
-@mixin breakpoints($point) {
-
-    @if $point ==verySmall {
-        @media (max-width: 480px) {
-            @content;
-        }
-    }
-
-    @else if $point ==small {
-        @media (max-width: 991px) {
-            @content;
-        }
-    }
-
-    @else if $point ==medium {
-        @media (min-width: 992px) {
-            @content;
-        }
-    }
-
-
-}
-
+@import 'variables';
+@import 'mixins';
 
 * {
     font-family: $main-font;
-
-    transition: 0.4s;
 
     &::-webkit-scrollbar {
         width: 8px;
@@ -61,7 +15,6 @@ sans-serif;
     &::-webkit-scrollbar-thumb {
         background: $main-shadow;
     }
-
 
 }
 
@@ -83,53 +36,6 @@ sans-serif;
 
 .w-25 {
     width: 25%;
-}
-
-// Global 
-
-%FlexBetween {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-
-
-// Animation
-
-%animationFadeIn {
-    animation: fadeIn 0.5s ease-in-out;
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-}
-
-%animationBlurIn {
-    animation: blurIn 0.6s ease-in-out;
-
-    @keyframes blurIn {
-        from {
-            opacity: 0;
-            filter: blur(5px);
-            transform: translateY(15px);
-        }
-
-        to {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateY(0);
-        }
-    }
 }
 
 .gap-1 {
@@ -169,6 +75,8 @@ sans-serif;
         outline: none;
         border-color: $main-shadow;
         box-shadow: 0 0 0 3px $main-shadow;
+        outline: 2px solid $main-color;
+        outline-offset: 2px;
     }
 
     &:hover:not(:focus) {
@@ -181,7 +89,7 @@ sans-serif;
     }
 }
 
-.form-class.seach-input {
+.form-class.search-input {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
     background-position: right 0.75rem center;
     background-repeat: no-repeat;
@@ -343,7 +251,7 @@ select.form-class {
     &-enter-active,
     &-leave-active {
         transition: max-height 0.3s ease, opacity 0.3s ease;
-        max-height: 1000px;
+        max-height: 100vh;
         overflow: hidden;
     }
 
@@ -360,7 +268,7 @@ select.form-class {
     border-radius: 2px;
     margin-bottom: 1.5rem;
     transition: all 0.3s ease;
-    width: calc(33.333% - 1.33rem);
+    width: 100%;
     display: inline-block;
     vertical-align: bottom;
     margin-right: 1rem;
@@ -464,22 +372,16 @@ select.form-class {
 
 // Container for the cards
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    // justify-content: space-between;
-
-    margin: 0 -1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: $card-gap;
 
     @include breakpoints(small) {
-        .card {
-            width: calc(47% - 0.5rem);
-        }
+        grid-template-columns: 1fr 1fr;
     }
 
     @include breakpoints(verySmall) {
-        .card {
-            width: 100%;
-        }
+        grid-template-columns: 1fr;
     }
 }
 

@@ -1,22 +1,14 @@
 <template>
   <input
     type="text"
-    placeholder="search"
+    placeholder="Search"
     v-model="model"
-    class="form-class seach-input w-100"
+    class="form-class search-input w-100"
+    aria-label="Search input"
+    id="search-input"
   />
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-  searchString: {
-    type: String,
-    required: true,
-    default: () => "",
-  },
-});
-
 const model = defineModel();
 </script>
-
-<style lang="scss"></style>

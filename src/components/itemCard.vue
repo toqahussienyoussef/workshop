@@ -118,5 +118,3 @@ watch(
 
 const expanded = ref<boolean>(false);
 </script>
-
-<style scoped></style>

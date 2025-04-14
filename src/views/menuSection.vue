@@ -4,6 +4,7 @@
       <h2 id="menu-heading">menu</h2>
       <div class="filter-section gap-1" aria-labelledby="menu-heading">
         <Dropdown
+          name="filter-by-category"
           :options="uniqueCategories"
           v-model="selectedCategory"
           aria-label="Filter by category"

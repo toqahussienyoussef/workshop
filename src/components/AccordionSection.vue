@@ -146,5 +146,3 @@ function toggleExpand() {
   isExpanded.value = !isExpanded.value;
 }
 </script>
-
-<style scoped></style>
